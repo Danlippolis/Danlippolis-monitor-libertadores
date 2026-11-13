@@ -17,6 +17,7 @@ import json
 import os
 import re
 import sys
+import urllib.error
 import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
@@ -143,8 +144,8 @@ def short_diff(old: str, new: str, max_lines: int = 12) -> str:
 
 
 def send_telegram(text: str) -> None:
-    token = os.environ.get("TELEGRAM_BOT_TOKEN")
-    chat_id = os.environ.get("TELEGRAM_CHAT_ID")
+    token = (os.environ.get("TELEGRAM_BOT_TOKEN") or "").strip()
+    chat_id = (os.environ.get("TELEGRAM_CHAT_ID") or "").strip()
     if not token or not chat_id:
         print("[dry-run] mensagem:\n" + text + "\n")
         return
@@ -154,9 +155,17 @@ def send_telegram(text: str) -> None:
         "disable_web_page_preview": "true",
     }).encode()
     req = urllib.request.Request(f"https://api.telegram.org/bot{token}/sendMessage", data=data)
-    with urllib.request.urlopen(req, timeout=TIMEOUT_S) as resp:
-        if resp.status != 200:
-            raise RuntimeError(f"Telegram respondeu {resp.status}")
+    try:
+        with urllib.request.urlopen(req, timeout=TIMEOUT_S) as resp:
+            if resp.status != 200:
+                raise RuntimeError(f"Telegram respondeu {resp.status}")
+    except urllib.error.HTTPError as err:
+        # A API do Telegram explica o motivo no corpo (ex.: "chat not found"); o token não aparece nele.
+        try:
+            detail = json.loads(err.read().decode()).get("description", "")
+        except Exception:  # noqa: BLE001
+            detail = ""
+        raise RuntimeError(f"Telegram HTTP {err.code}: {detail}") from None
 
 
 # ---------------------------------------------------------------- estado

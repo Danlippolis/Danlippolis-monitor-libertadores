@@ -80,6 +80,33 @@ def html_to_text(html: str) -> str:
     return "\n".join(line for line in lines if line)[:MAX_TEXT_CHARS]
 
 
+MIN_VISIBLE_CHARS = 200
+_JSON_STRING = re.compile(r'"((?:[^"\\]|\\.){8,400})"')
+_RELEVANT = re.compile(
+    r"ingress|ticket|entrada|venta|venda|sale|categor|hospital|US\$|USD|precio|preço|price|"
+    r"esgot|agotad|sold.?out|disponi|available|regist|final",
+    re.I,
+)
+_CODE_LIKE = re.compile(r"https?://|\.(js|css|png|svg|webp)\b|[{}<>;=]")
+
+
+def embedded_text(html: str) -> str:
+    """Fallback para páginas renderizadas por JavaScript (texto visível vazio):
+    pega strings dentro do HTML/JSON embutido que pareçam texto sobre ingressos.
+    Ignora URLs, código e identificadores, que mudam a cada build e gerariam alarme falso."""
+    found: set[str] = set()
+    for match in _JSON_STRING.finditer(html):
+        raw = match.group(1)
+        try:
+            value = json.loads(f'"{raw}"')
+        except ValueError:
+            value = raw
+        value = re.sub(r"\s+", " ", value).strip()
+        if " " in value and _RELEVANT.search(value) and not _CODE_LIKE.search(value):
+            found.add(value)
+    return "\n".join(sorted(found))[:MAX_TEXT_CHARS]
+
+
 def fetch(url: str) -> str:
     req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT, "Accept-Language": "pt-BR,pt;q=0.9"})
     with urllib.request.urlopen(req, timeout=TIMEOUT_S) as resp:
@@ -141,10 +168,18 @@ def save_state(state: dict) -> None:
     STATE_FILE.write_text(json.dumps(state, ensure_ascii=False, indent=1, sort_keys=True) + "\n", encoding="utf-8")
 
 
+def describe_error(err: Exception) -> str:
+    """Texto curto do erro para o state.json (que é público): nunca inclui o token."""
+    text = repr(err)[:300]
+    token = os.environ.get("TELEGRAM_BOT_TOKEN")
+    return text.replace(token, "***") if token else text
+
+
 def register_failure(state: dict, source: str, err: Exception, alerts: list[str]) -> None:
     n = state["failures"].get(source, 0) + 1
     state["failures"][source] = n
-    print(f"[erro] {source}: {err!r} (falha {n} seguida)", file=sys.stderr)
+    state.setdefault("last_error", {})[source] = describe_error(err)
+    print(f"[erro] {source}: {describe_error(err)} (falha {n} seguida)", file=sys.stderr)
     if n == FAILURE_ALERT_AFTER:
         alerts.append(f"⚠️ {source} falhou {n} vezes seguidas ({type(err).__name__}). O monitor dessa fonte pode estar cego.")
 
@@ -153,22 +188,31 @@ def register_success(state: dict, source: str, alerts: list[str]) -> None:
     if state["failures"].get(source, 0) >= FAILURE_ALERT_AFTER:
         alerts.append(f"✅ {source} voltou a responder.")
     state["failures"][source] = 0
+    state.setdefault("last_error", {}).pop(source, None)
 
 
 # ---------------------------------------------------------------- checagens
 def check_pages(state: dict, alerts: list[str], first_run: bool) -> None:
     for name, url in PAGES.items():
         try:
-            text = html_to_text(fetch(url))
+            html = fetch(url)
         except Exception as err:  # noqa: BLE001 — qualquer falha de rede/parse vira alerta controlado
             register_failure(state, name, err, alerts)
             continue
         register_success(state, name, alerts)
 
+        text, mode = html_to_text(html), "texto visível"
+        if len(text) < MIN_VISIBLE_CHARS:          # página montada por JavaScript
+            text, mode = embedded_text(html), "strings embutidas"
+
         digest = hashlib.sha256(text.encode()).hexdigest()
         previous = state["pages"].get(name)
-        state["pages"][name] = {"hash": digest, "text": text}
-        if previous and previous["hash"] != digest and not first_run:
+        state["pages"][name] = {"hash": digest, "text": text, "mode": mode, "html_bytes": len(html)}
+        print(f"[info] {name}: {len(html)} bytes de HTML, {len(text)} chars via {mode}")
+        if not text:
+            print(f"[aviso] {name}: nada monitorável na página (provável SPA sem conteúdo no HTML)", file=sys.stderr)
+        # Só compara se o modo de extração for o mesmo; senão vira alarme falso na troca de versão.
+        if previous and previous.get("mode", "texto visível") == mode and previous["hash"] != digest and not first_run:
             alerts.append(f"🔔 Mudou: {name}\n{url}\n\n{short_diff(previous['text'], text)}")
 
 
@@ -220,8 +264,12 @@ def main() -> int:
     for msg in alerts:
         try:
             send_telegram(msg)
+            state.setdefault("last_error", {}).pop("Telegram", None)
         except Exception as err:  # noqa: BLE001
-            print(f"[erro] Telegram: {err!r}", file=sys.stderr)
+            state.setdefault("last_error", {})["Telegram"] = describe_error(err)
+            print(f"[erro] Telegram: {describe_error(err)}", file=sys.stderr)
+    if alerts:
+        save_state(state)  # registra o resultado do envio (diagnóstico pelo state.json)
     print(f"OK — {len(alerts)} alerta(s).")
     return 0
 

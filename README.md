@@ -5,6 +5,9 @@ Roda no GitHub Actions a cada ~10 min. Lê páginas públicas e avisa no Telegra
 - o texto da página de ingressos da Conmebol ou da ElevenTickets muda;
 - sai notícia nova (Google News) sobre venda, lote, carga ou revenda.
 
+Todo dia, a partir das 9h (Brasília), manda um ping "✅ Monitor funcionando" com o status de cada fonte.
+Se o ping não chegar, o monitor parou.
+
 **Não compra nada.** Não faz login nem entra na fila. A compra é manual, em `libertadores.eleventickets.com`.
 O monitor para sozinho depois de 28/11/2026.
 

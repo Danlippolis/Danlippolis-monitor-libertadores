@@ -27,7 +27,9 @@ from pathlib import Path
 STATE_FILE = Path(os.environ.get("STATE_FILE", "state.json"))
 USER_AGENT = "libertadores-ticket-monitor/1.0 (monitor pessoal de baixa frequencia)"
 TIMEOUT_S = 20
+BRT = dt.timezone(dt.timedelta(hours=-3))   # Brasil sem horário de verão desde 2019
 FINAL_DATE = dt.date(2026, 11, 28)          # depois disso o monitor para sozinho
+HEARTBEAT_HOUR = 9                          # ping diário "estou vivo" a partir das 9h (Brasília)
 FAILURE_ALERT_AFTER = 6                      # falhas seguidas antes de avisar
 MAX_SEEN_NEWS = 500
 MAX_TEXT_CHARS = 20_000
@@ -242,9 +244,28 @@ def check_news(state: dict, alerts: list[str], first_run: bool) -> None:
         alerts.append("📰 Notícias novas sobre ingressos:\n\n" + "\n\n".join(lines))
 
 
+def daily_heartbeat(state: dict, now: dt.datetime) -> str | None:
+    """Uma vez por dia, a partir das HEARTBEAT_HOUR (horário de Brasília), manda um resumo.
+    Vai na primeira execução depois das 9h; com os atrasos do GitHub, chega entre 9h e ~9h30."""
+    today = now.date().isoformat()
+    if now.hour < HEARTBEAT_HOUR or state.get("last_heartbeat") == today:
+        return None
+    state["last_heartbeat"] = today
+    days_left = (FINAL_DATE - now.date()).days
+    lines = [f"✅ Monitor funcionando — {now:%d/%m %H:%M}. Faltam {days_left} dia(s) para a final."]
+    for source in [*PAGES, "Google News"]:
+        n = state["failures"].get(source, 0)
+        if n:
+            lines.append(f"• {source}: falhando ({n}x seguidas) – {state.get('last_error', {}).get(source, '?')}")
+        else:
+            lines.append(f"• {source}: ok")
+    return "\n".join(lines)
+
+
 # ---------------------------------------------------------------- main
 def main() -> int:
-    today = dt.datetime.now(dt.timezone(dt.timedelta(hours=-3))).date()
+    now = dt.datetime.now(BRT)
+    today = now.date()
     if today > FINAL_DATE:
         print("Final já passou; nada a fazer.")
         return 0
@@ -259,6 +280,11 @@ def main() -> int:
     if first_run:
         alerts.insert(0, "🤖 Monitor de ingressos da final da Libertadores ativo. Vou avisar quando as páginas oficiais mudarem ou sair notícia de novo lote.")
         state["initialized"] = True
+        state["last_heartbeat"] = today.isoformat()   # a mensagem acima já serve de ping de hoje
+    else:
+        ping = daily_heartbeat(state, now)
+        if ping:
+            alerts.insert(0, ping)
 
     save_state(state)  # salva antes de notificar: falha no Telegram não gera alerta duplicado depois
     for msg in alerts:

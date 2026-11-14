@@ -17,6 +17,7 @@ import json
 import os
 import re
 import sys
+import time
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -33,12 +34,14 @@ FINAL_DATE = dt.date(2026, 11, 28)          # depois disso o monitor para sozinh
 HEARTBEAT_HOUR = 9                          # ping diário "estou vivo" a partir das 9h (Brasília)
 FAILURE_ALERT_AFTER = 6                      # falhas seguidas antes de avisar
 MAX_SEEN_NEWS = 500
+EMPTY_RETRIES = 3                            # tentativas quando a página vem vazia
+EMPTY_RETRY_PAUSE_S = 4
 MAX_TEXT_CHARS = 20_000
 
 # Páginas cujo TEXTO visível é comparado entre execuções.
 PAGES = {
     "Conmebol – página de ingressos": "https://gol.conmebol.com/libertadores/en/ticketing/montevideo2026",
-    "ElevenTickets – página inicial": "https://libertadores.eleventickets.com/",
+    # ElevenTickets removida: bloqueia (HTTP 403) todos os acessos vindos do GitHub Actions.
 }
 
 # Google News RSS: notícias novas sobre venda/lotes.
@@ -206,22 +209,30 @@ def register_success(state: dict, source: str, alerts: list[str]) -> None:
 def check_pages(state: dict, alerts: list[str], first_run: bool) -> None:
     for name, url in PAGES.items():
         try:
-            html = fetch(url)
+            # A Conmebol devolve 0 bytes em ~metade das requisições; tenta até 3 vezes, com pausa.
+            for attempt in range(EMPTY_RETRIES):
+                html = fetch(url)
+                if html.strip():
+                    break
+                time.sleep(EMPTY_RETRY_PAUSE_S)
         except Exception as err:  # noqa: BLE001 — qualquer falha de rede/parse vira alerta controlado
             register_failure(state, name, err, alerts)
             continue
-        register_success(state, name, alerts)
 
         text, mode = html_to_text(html), "texto visível"
         if len(text) < MIN_VISIBLE_CHARS:          # página montada por JavaScript
             text, mode = embedded_text(html), "strings embutidas"
+        if not text:
+            # Resposta vazia é instabilidade do site (às vezes vem 0 bytes): conta como falha
+            # e NÃO sobrescreve a última versão boa, senão uma mudança no meio-tempo se perderia.
+            register_failure(state, name, RuntimeError(f"resposta vazia ({len(html)} bytes)"), alerts)
+            continue
+        register_success(state, name, alerts)
 
         digest = hashlib.sha256(text.encode()).hexdigest()
         previous = state["pages"].get(name)
         state["pages"][name] = {"hash": digest, "text": text, "mode": mode, "html_bytes": len(html)}
         print(f"[info] {name}: {len(html)} bytes de HTML, {len(text)} chars via {mode}")
-        if not text:
-            print(f"[aviso] {name}: nada monitorável na página (provável SPA sem conteúdo no HTML)", file=sys.stderr)
         # Só compara se o modo de extração for o mesmo; senão vira alarme falso na troca de versão.
         if previous and previous.get("mode", "texto visível") == mode and previous["hash"] != digest and not first_run:
             alerts.append(f"🔔 Mudou: {name}\n{url}\n\n{short_diff(previous['text'], text)}")

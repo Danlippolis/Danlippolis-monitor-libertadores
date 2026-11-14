@@ -1,9 +1,10 @@
 name: monitor-ingressos #teste_exec
 
+# Disparado a cada 10 min pelo cron-job.org (API workflow_dispatch).
+# O agendamento nativo do GitHub foi removido: demorou ~19h para disparar a primeira vez
+# e, rodando junto com o cron-job.org, gerava execuções duplicadas e conflito no push do estado.
 on:
-  schedule:
-    - cron: "3,13,23,33,43,53 * * * *"   # a cada 10 min, fora dos minutos "redondos" (mais congestionados no GitHub)
-  workflow_dispatch:          # permite rodar na mão pela aba Actions
+  workflow_dispatch:          # cron-job.org + botão "Run workflow"
 
 permissions:
   contents: write             # para commitar o state.json
@@ -18,6 +19,8 @@ jobs:
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main           # sempre a versão mais recente (inclui o state.json salvo pela execução anterior)
 
       - uses: actions/setup-python@v5
         with:
@@ -36,5 +39,6 @@ jobs:
             git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
             git add state.json
             git commit -m "chore: atualiza estado do monitor"
-            git push
+            # Se outra execução salvou o estado no meio-tempo, reaplica por cima e tenta de novo.
+            git push || { git pull --rebase -X theirs origin main && git push; }
           fi

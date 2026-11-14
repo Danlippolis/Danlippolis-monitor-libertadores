@@ -1,12 +1,13 @@
 {
  "failures": {
   "Conmebol – página de ingressos": 0,
-  "ElevenTickets – página inicial": 19,
-  "Google News": 0
+  "ElevenTickets – página inicial": 20,
+  "Google News": 1
  },
  "initialized": true,
  "last_error": {
-  "ElevenTickets – página inicial": "<HTTPError 403: 'Forbidden'>"
+  "ElevenTickets – página inicial": "<HTTPError 403: 'Forbidden'>",
+  "Google News": "<HTTPError 503: 'Service Unavailable'>"
  },
  "last_heartbeat": "2026-11-13",
  "pages": {

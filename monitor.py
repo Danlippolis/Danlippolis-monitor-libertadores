@@ -22,6 +22,7 @@ import urllib.error
 import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
+from email.utils import parsedate_to_datetime
 from html.parser import HTMLParser
 from pathlib import Path
 
@@ -45,7 +46,7 @@ PAGES = {
 }
 
 # Google News RSS: notícias novas sobre venda/lotes.
-NEWS_QUERY = '"final da Libertadores" ingressos (venda OR lote OR carga OR revenda) when:7d'
+NEWS_QUERY = '"final da Libertadores" ingressos (venda OR lote OR carga OR revenda) when:1d'
 NEWS_RSS = (
     "https://news.google.com/rss/search?q="
     + urllib.parse.quote(NEWS_QUERY)
@@ -238,7 +239,26 @@ def check_pages(state: dict, alerts: list[str], first_run: bool) -> None:
             alerts.append(f"🔔 Mudou: {name}\n{url}\n\n{short_diff(previous['text'], text)}")
 
 
-def check_news(state: dict, alerts: list[str], first_run: bool) -> None:
+def published_today(pub_date: str, today: dt.date) -> bool:
+    """True só se a notícia foi publicada hoje (horário de Brasília).
+    Sem data ou data ilegível -> False: na dúvida, não manda."""
+    try:
+        published = parsedate_to_datetime(pub_date)
+    except (TypeError, ValueError):
+        return False
+    if published.tzinfo is None:                 # RFC 822 sem fuso: Google News usa GMT
+        published = published.replace(tzinfo=dt.timezone.utc)
+    return published.astimezone(BRT).date() == today
+
+
+def published_hhmm(pub_date: str) -> str:
+    published = parsedate_to_datetime(pub_date)
+    if published.tzinfo is None:
+        published = published.replace(tzinfo=dt.timezone.utc)
+    return published.astimezone(BRT).strftime("%d/%m %Hh%M")
+
+
+def check_news(state: dict, alerts: list[str], first_run: bool, today: dt.date) -> None:
     source = "Google News"
     try:
         items = parse_rss(fetch(NEWS_RSS))
@@ -252,6 +272,7 @@ def check_news(state: dict, alerts: list[str], first_run: bool) -> None:
         it for it in items
         if it["link"] and it["link"] not in seen
         and NEWS_MUST_MATCH.search(it["title"]) and NEWS_KEYWORDS.search(it["title"])
+        and published_today(it["date"], today)   # notícia velha é marcada como vista, mas não vai pro Telegram
     ]
     for it in items:
         if it["link"] and it["link"] not in seen:
@@ -260,7 +281,7 @@ def check_news(state: dict, alerts: list[str], first_run: bool) -> None:
     state["seen_news"] = state["seen_news"][-MAX_SEEN_NEWS:]
 
     if new_items and not first_run:
-        lines = [f"• {it['title']}\n  {it['link']}" for it in new_items[:8]]
+        lines = [f"• {it['title']} ({published_hhmm(it['date'])})\n  {it['link']}" for it in new_items[:8]]
         alerts.append("📰 Notícias novas sobre ingressos:\n\n" + "\n\n".join(lines))
 
 
@@ -295,7 +316,7 @@ def main() -> int:
     alerts: list[str] = []
 
     check_pages(state, alerts, first_run)
-    check_news(state, alerts, first_run)
+    check_news(state, alerts, first_run, today)
 
     if first_run:
         alerts.insert(0, "🤖 Monitor de ingressos da final da Libertadores ativo. Vou avisar quando as páginas oficiais mudarem ou sair notícia de novo lote.")

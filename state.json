@@ -1,11 +1,12 @@
 {
  "failures": {
-  "Conmebol – página de ingressos": 0,
+  "Conmebol – página de ingressos": 1,
   "ElevenTickets – página inicial": 102,
   "Google News": 0
  },
  "initialized": true,
  "last_error": {
+  "Conmebol – página de ingressos": "RuntimeError('resposta vazia (0 bytes)')",
   "ElevenTickets – página inicial": "<HTTPError 403: 'Forbidden'>"
  },
  "last_heartbeat": "2026-11-15",
@@ -135,6 +136,7 @@
   "https://news.google.com/rss/articles/CBMi4gFBVV95cUxOMUs5QjIzQUJLXzY3NTdqVHR4NGtuSzUxZkJXZXhibjNaXzN0Q2F1QUJLRkI5V3lCZ20xd0NYbi1kWnZXY3VrSlpNRHp6X0Y3UmFoYlNWTEViZHA5WFhFZzlWN0F3X1oxRzI2dFdtalgzeUVYUDg1TEEzeVNadWlIMXo4T2ozNkllWm92U0JzTm9iWWl5WkwtRkprRXFoeXkzQTd3RW1BaFBNbFM0T1h5eEV0OE5CaFhnZXVnODJNVUJhSFlVdThSOVhWeUZObDMyY1VBY3B3SjZOdUJucnFKM2t3?oc=5",
   "https://news.google.com/rss/articles/CBMi1gFBVV95cUxNd0xUZHF2NkctNHVqTnA1a0xaRmtxLVl6STVHbkhmMkhGb2ZzM0JZMWNUMTFtbDJUNGpPN0xOQTZZRzNhVThINHJWUzZVbG9TRkJ5TW11S09Tc1dYUjEzUmpHN1Z1WGJVUXNRdjY1Z2dMeDR1WWt1QUtyWEZHSFlLQzlJTnR5bjg0YVRWUGhlZEJkeWI3cXRJZC13VHhxMEtqYmRvcDlKaXdsUHhJVzJ6NkYxMk5MVFpGZWhWUVgtSGVyMGRHOVU4cmY0M1haQ2NvdmtnTUFB?oc=5",
   "https://news.google.com/rss/articles/CBMi6wFBVV95cUxPRnNNVmEwT3ZBM0RUMENRWDkxUU1mY2VPaUExYkczR2VNSzVieXhoamo2dDFobWRrYy1oS01XMnJjc0F4NVRYSFZpRVlHT1RQUHE0cWhOa3FWd1VlMWtRbU40Q1NGdjhEY1pETmJZZGMxM0U4YUNGNlJnUi1oUnhtWEhTUUZqTzNGeUtBdE5qblVRZktqaGx4SGxVZ1o1bEVCd3J5SmtBZ3pMWE1IOUsxeW9xMW5xWU0tdzYxem1JNm5uaml0dk5mcF9OTVh0d3VlS05DZEJNLXktTHZVaGFHdV9FN08zc0NJcDhz?oc=5",
-  "https://news.google.com/rss/articles/CBMisAFBVV95cUxOcDRrYm1uQnFlT0lNbmhNMHdZRU45WmhYa3dfTUFWM2hVVU5Zd2lTaTg3eVJuM21OdENMN1VLNXhFSUdBSVdQcDJRc3JuRDkxQzdoQy14RF9CMnNQTndDVXA1dEZQeEFVcEx3ZDlpMUI5X2g1UkZ4YjRZdHJRVjdQRW5GcFROckNqaVBoNFhCcUVxcER6T1d4SUtNdVpIdlM3cldMT0VyMFQ3UUxoNUJMRw?oc=5"
+  "https://news.google.com/rss/articles/CBMisAFBVV95cUxOcDRrYm1uQnFlT0lNbmhNMHdZRU45WmhYa3dfTUFWM2hVVU5Zd2lTaTg3eVJuM21OdENMN1VLNXhFSUdBSVdQcDJRc3JuRDkxQzdoQy14RF9CMnNQTndDVXA1dEZQeEFVcEx3ZDlpMUI5X2g1UkZ4YjRZdHJRVjdQRW5GcFROckNqaVBoNFhCcUVxcER6T1d4SUtNdVpIdlM3cldMT0VyMFQ3UUxoNUJMRw?oc=5",
+  "https://news.google.com/rss/articles/CBMixgFBVV95cUxPT0JQWXNFYU1KOUV1UU4zUHh2Z3pwS1FQLTF1eXotUS1fa0Y2bm9NeENSdERydVpjOVd0OG0xZUxpUk41MW0wQ2NaNHZTWlF4SHRIWUZBemZGcWlvQmtwUHF5NXQ1X1VIeWo2eDlFdElSLXF1c2dtMVZWZ1FfamN6UXlGdDhrSjEzd0FESTBlMkllMnhaWkhvOFVLX0NNeWVSOG9icy1lX0dOMGFscTVyMnZHcl84dmpjUHBpX3dJUk1WU3pzRVE?oc=5"
  ]
 }

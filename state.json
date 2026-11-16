@@ -1,11 +1,12 @@
 {
  "failures": {
-  "Conmebol – página de ingressos": 0,
+  "Conmebol – página de ingressos": 1,
   "ElevenTickets – página inicial": 102,
   "Google News": 0
  },
  "initialized": true,
  "last_error": {
+  "Conmebol – página de ingressos": "RuntimeError('resposta vazia (0 bytes)')",
   "ElevenTickets – página inicial": "<HTTPError 403: 'Forbidden'>"
  },
  "last_heartbeat": "2026-11-16",
@@ -141,6 +142,7 @@
   "https://news.google.com/rss/articles/CBMilgFBVV95cUxObWx0YjE3VlJLYzZVY0lURUlFUG1uaGowdUNva3VKRmtUblVUejUxQ1hDNDkzWWJQZXZTV2JGbnhFYXZEWUFFMzVPTHRxUi0xUzhoVGpsbGZPMVpjel8wRS1MTF94bHFQbmdBS2JodVg1RG9fYkZ1SmNLYV9rY3RyejVHX2lOeTNEaHhSRC01TzJUSlZ5S2c?oc=5",
   "https://news.google.com/rss/articles/CBMipwFBVV95cUxOZkRVZjhpdXVpNkNRR1BSazRScUJ3cjF3Vmp0M3d4eWNUUVlEM1FlZHdWaUtlajB1SzN0c01rOW9wVWRQWTYzem9Lc211b0Vta3ZCb0hOYUozam1mTXdIUUhxS05sUnZ5eE1ZeHFHWWtWVW5iYy15OVpmNlF4emxmV2IzNkxRcnJHeFl6Tll6TTBENFRoTW9hUVIyU0R1eVFoUjV1ZEJScw?oc=5",
   "https://news.google.com/rss/articles/CBMigAJBVV95cUxNTVJpazdlMWJQSUhyeFFuTWNITnJNdHYxWWxoWHBkeXE4VnQ4ODFua2ppVWZKVHgweGpoZnVPVzlxaTM2NW1vS25ZejRvWEowVmExbmV5LTRobGJzYzNlbktla1B1MW5OYnNxY203eUlpVlg5Z1NhMGsyRHY5NWoyQmlFdWFBZmkxTE1SREgtMkIxTFZ0cHlpRmRKaEp3dlhJM2t2ZEZRUnpoT2huWTUwbDhqTkRITXgtYVU3NUNlZlRKZUI2YUdmdU1RbkVJVFJySWZBOVBtMnhhQ3RhVUxiNGJRSlZ0TVczRU9qMnFoV3FKUDdkdWhCMFNzMzR6WmJi?oc=5",
-  "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5YZWdWU1JSTnJvV0hVbEs0X1M2UXIyam5mX216TDZYMG1BcW01N3hDWUx3WENJZldSVnQyNmJVVnV6c1lqaU5wMmNlTGhtRTMyWjFMVDZB?oc=5"
+  "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5YZWdWU1JSTnJvV0hVbEs0X1M2UXIyam5mX216TDZYMG1BcW01N3hDWUx3WENJZldSVnQyNmJVVnV6c1lqaU5wMmNlTGhtRTMyWjFMVDZB?oc=5",
+  "https://news.google.com/rss/articles/CBMi4AFBVV95cUxNUnplZFNBS3FUTjl0RWNzUFFtdXhrOFNXTXJlTVhvSS1KMHktSGhZMGRoaXJoYTY3SlZxemNzOWlGX1U5REpmOElSekFmZWQ0RVh1UmNHNy0xSGhDcnNqNHR3Z05VYnZFUjJ3YWEzUF9ZTXgzNUtIWHN2NkdMS0Q1cWh4b2N6UUFaOTBIRENLUUdVQzBrTHk1a3gwb00zLXdDYVFaSDZjWEpvbVhDeXkxbTBHd0VyMFVVRW91S1VoWmdiRnZOWnh5Y0lKcXZHMjUycEF0MUYxTndMVG5SbjdsZg?oc=5"
  ]
 }

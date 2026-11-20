@@ -1,6 +1,6 @@
 {
  "failures": {
-  "Conmebol – página de ingressos": 15,
+  "Conmebol – página de ingressos": 16,
   "ElevenTickets – página inicial": 102,
   "Google News": 0
  },
@@ -9,7 +9,7 @@
   "Conmebol – página de ingressos": "RuntimeError('resposta vazia (0 bytes)')",
   "ElevenTickets – página inicial": "<HTTPError 403: 'Forbidden'>"
  },
- "last_heartbeat": "2026-11-19",
+ "last_heartbeat": "2026-11-20",
  "pages": {
   "Conmebol – página de ingressos": {
    "hash": "2eeb09c346ba4d5ebc30ad7f42f4b024c41df47f49a1fbfdd29e52d8a9128a7d",

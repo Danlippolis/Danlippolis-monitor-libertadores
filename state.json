@@ -1,11 +1,12 @@
 {
  "failures": {
-  "Conmebol – página de ingressos": 0,
+  "Conmebol – página de ingressos": 1,
   "ElevenTickets – página inicial": 102,
   "Google News": 0
  },
  "initialized": true,
  "last_error": {
+  "Conmebol – página de ingressos": "RuntimeError('resposta vazia (0 bytes)')",
   "ElevenTickets – página inicial": "<HTTPError 403: 'Forbidden'>"
  },
  "last_heartbeat": "2026-11-24",
@@ -271,6 +272,7 @@
   "https://news.google.com/rss/articles/CBMiWEFVX3lxTFBrZG40R2hIWHFHRG5wZjhIWFJDUy1fQUVHUGxFb0Rfc3hnMDNxTnlqcDk0dVdBT1pyd2RkV25pZm0zSUZmbTh4VkNyYVBhNExVY2ZKR1hCU1k?oc=5",
   "https://news.google.com/rss/articles/CBMivAFBVV95cUxORkF2MWlZWlcxZEZ0djJ6b21CSUVFeGw4LXZTTmVRdTNfbXdSOUZVX21lTTJrRF95cUJjaTl0eFVxLVItdGZ4X3JidERJUk5Dam1Oa25uRW9oZURRNnpNSmo1aGF6blB5TWU0aTlHTTVWWThVbTFTOThjNTVKckNzeEJKRXBUMUUzemhoQnRQZ1Z0OXIzazhLYVVESXk5ZDZ6eTMzXzhHN3ZmaTVVUnRyS1RkTGFXQk4yaUdDeA?oc=5",
   "https://news.google.com/rss/articles/CBMie0FVX3lxTE1mb0FBOTRFLUFsTGVqTjh4RGMwRHR0N1h5SUVYZnJiX1h4cHM1a2ZxWHV5cEdBTDRUNTBaNW9rYXJjak5Rd0xnODNlcGZWdjZWUUljMktiSDBxNGdNNnJoQmU4TC1BaXBnSGZVY1JzWXpvVXg2YVpnMXVBcw?oc=5",
-  "https://news.google.com/rss/articles/CBMilgFBVV95cUxOcFVuMGpZb19WM1hCUnByNmpVRUx6WjdnUlZUMjZsUnRqbEJEd0tlVXgwNUxkYjBnZWFsMlRNY2NPWmJyaHBxMzRwd3BoUWFnOUFxaXdicjlPaTY2UXBxRnVyVjN6cWQ4bGg0NVN4R0NjYTktREEwakExNldNa01LTFFYUXZKNFpfel8tT3VyclVDSV9xSlE?oc=5"
+  "https://news.google.com/rss/articles/CBMilgFBVV95cUxOcFVuMGpZb19WM1hCUnByNmpVRUx6WjdnUlZUMjZsUnRqbEJEd0tlVXgwNUxkYjBnZWFsMlRNY2NPWmJyaHBxMzRwd3BoUWFnOUFxaXdicjlPaTY2UXBxRnVyVjN6cWQ4bGg0NVN4R0NjYTktREEwakExNldNa01LTFFYUXZKNFpfel8tT3VyclVDSV9xSlE?oc=5",
+  "https://news.google.com/rss/articles/CBMi8gFBVV95cUxOdkJHajVuWTFyVUFIX0JMb1YxRVgwSm5hcjl3cGlhRDl2NTk2eng5VEo0UXVpOEU2em83dlllOVRCbWZkcmI2dndfNEszUU9nOE1LN21ZYU5aVDZnbm4tS21EbFVSNC1ORy02d2d0TnVWd2g0VWx2V1dvY29LaS1nVHRpYjRvOHNQVVQwU01Fc1JXWGNTUGJ0SHh5MEdNRmdkdEcxVXVucUEtYXdieHQxRDdMdE1VRENjVE9QcVJBYjRfb1ZYYTVoZG5Ya1VaLXRvVkFwNUNEZ0lRZVhWVG90RF9CVnJCU005c0FSZFpsdXVIZw?oc=5"
  ]
 }

@@ -1,11 +1,12 @@
 {
  "failures": {
-  "Conmebol – página de ingressos": 0,
+  "Conmebol – página de ingressos": 1,
   "ElevenTickets – página inicial": 102,
   "Google News": 0
  },
  "initialized": true,
  "last_error": {
+  "Conmebol – página de ingressos": "RuntimeError('resposta vazia (0 bytes)')",
   "ElevenTickets – página inicial": "<HTTPError 403: 'Forbidden'>"
  },
  "last_heartbeat": "2026-11-24",
@@ -280,6 +281,7 @@
   "https://news.google.com/rss/articles/CBMimAFBVV95cUxOX3RxWE1CTDNvZDM5Z1ZocV9BV1hpUVVPTlJUclZVSDJxcUx1RmpXMUlvT0piSG5icjZlb2ZNMmdzZlN5WHZ0a2pKcEVna2VTWGJELWJQa1U0NHFMLXAxVmxxNExXVzYtU0R2elJsZkt0S1NGV1YyY3d3MElpZmR3N3l6bC14bjlkbm5wVHlDamlPdVMyb2IzONIBngFBVV95cUxNMzVHdmJRcS1TZ192ZHZMS1MxSElRRG1oMGlnWkVSMzZScldJOXZmUTNnTTliRER6UmxrVFpQUTZST2hmc21WajRPOVhuYUVFVEQ0MGktSUhEZFd6ckNVb010TG9xMzhVZUFubTI3NzlEenZzdEszYk1pS2JtTGVvLV9ya1RrMDd5dHhwV3VkaHZXY1NEekw4TERZMFhDdw?oc=5",
   "https://news.google.com/rss/articles/CBMi4gFBVV95cUxPcUkxQjRmT2NlSnRueXJMZHNlaFRWaUhvdk1pMm5TN1NGa09WNEtwVFoxcnUtekJ0Skg5NlotdTNqckNoaHVvU21kN2RzbHlCZjNHSVgwYU5UUV8yVWplby16YldDYVNVeVh0MHB5Nld3SnRPcE92T0hPOFA0a3kxWkVyOUhBUkNXeU1rM3E5MGlkNmQ5dXBmQmxQelh0a2lkeDhVRlM4QUpMMWxDTE9rbmY2aXFMSEFYYnVwc0paanY1VkJhNm1PNWNRU2gzSnJNLUxjSjBGc20yU2FOMjFtNmpB?oc=5",
   "https://news.google.com/rss/articles/CBMisgFBVV95cUxQelR4dXlqNEZEMnlRQjJZN3c0YzBsNHlTdWlnb1JKM00zNThzUEMyNFNjTWNZWWRveEFTR0pHOUFRZjd6eG40UlZZaXlCQkRGRGVmVG9iZGtRS1RaUktDR0dRMGtLMEtUVXFCWWFGakdKSWw0bWRpYXNEYl96T1EzWmE3MEJGRU0yYjhjUEdlUDJvdUFSa3R6V0pGdWlCaTBIeXgzd18tVU9ZYko5dDRHLVVn?oc=5",
-  "https://news.google.com/rss/articles/CBMiV0FVX3lxTE5hc0VqM3hibVRoYTkzZFQteGVkT2R0NFNWUzk0ck1qd3NUeXVQNnZBVDVRM3JHc1c5a3NEaFJlR0xHLWJTOEhKckRfN0xCM3pkdWkzcERYaw?oc=5"
+  "https://news.google.com/rss/articles/CBMiV0FVX3lxTE5hc0VqM3hibVRoYTkzZFQteGVkT2R0NFNWUzk0ck1qd3NUeXVQNnZBVDVRM3JHc1c5a3NEaFJlR0xHLWJTOEhKckRfN0xCM3pkdWkzcERYaw?oc=5",
+  "https://news.google.com/rss/articles/CBMiSkFVX3lxTE5jNWRodFE0aWxqYjhKTVYtLUlEWG5nMndkTUMtVWN3ZE1UWmxkMnJTZU45czZ6c2NNR0VzZWhEQVpjVDZmUVF5dGVB0gGeAUFVX3lxTE0zNUd2YlFxLVNnX3ZkdkxLUzFISVFEbWgwaWdaRVIzNlJyV0k5dmZRM2dNOWJERHpSbGtUWlBRNlJPaGZzbVZqNE85WG5hRUVURDQwaS1JSERkV3pyQ1VvTXRMb3EzOFVlQW5tMjc3OUR6dnN0SzNiTWlLYm1MZW8tX3JrVGswN3l0eHBXdWRodldjU0R6TDhMRFkwWEN3?oc=5"
  ]
 }

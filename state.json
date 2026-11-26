@@ -1,11 +1,12 @@
 {
  "failures": {
-  "Conmebol – página de ingressos": 0,
+  "Conmebol – página de ingressos": 1,
   "ElevenTickets – página inicial": 102,
   "Google News": 0
  },
  "initialized": true,
  "last_error": {
+  "Conmebol – página de ingressos": "RuntimeError('resposta vazia (0 bytes)')",
   "ElevenTickets – página inicial": "<HTTPError 403: 'Forbidden'>"
  },
  "last_heartbeat": "2026-11-26",
@@ -326,6 +327,7 @@
   "https://news.google.com/rss/articles/CBMijwFBVV95cUxOb2c0WmF6SjA1RmZ6ZEY2SjNXdVk0dFc5WGtITjJkY0xJMnh2MHNLUVRieWlZazdqd1RyMmJPUjl5amVvZ1p5VFZRMDRQc0NlNDQydEQ0eXB6SW9fQ3o2UlFQTk5JQ2c5dU1Ta0hKNE5xUkZ1V2dmcjV0Ml9DSE5VbldFUDBKZVU5Z1BGYXFzVQ?oc=5",
   "https://news.google.com/rss/articles/CBMisgFBVV95cUxOS0hpRlR6MWVvLXJuakFQWnpZM3JqLUtfSlFZenAwU0hndzlfY1U4N0d3QTNWNEsycFpldzliN1dmWkFWNU82bXN4X3RkOEQ5TjVBcTNUcU1jTnROQm4weVdPN0FiX0c0Ty1EUkZ6TUwwTjhkZjJjVk9fb1VJYjlWREVwYVZTaFJIb0NIT2NKSFNDc1BGR0dhbzNCdHA0QjkzY18yTkpiR2hXbGl2Y05XR0Vn?oc=5",
   "https://news.google.com/rss/articles/CBMitwFBVV95cUxOUnNtOGNmY1pGd3BydUUxYVBKek4yVWlWYVRRVmZsLTR5Nk5nZ2tBbXM2RDZNTEdRZmJRVGF1RS1UUFRvblFnaUwwZUlxWFlsS09ST2pGdk5JZFVlZjc1UnB2UGY1REVoazRGN1VmZ3hXeUFsRGpkY2EwNHRBd1hobjRoS2hlS2VEejViaFNqYnJpVXRpcGltOWwyeXVVdXQtWW5ReWRySE5QU1VlQXZyZlk5ZExSc1k?oc=5",
-  "https://news.google.com/rss/articles/CBMi7wFBVV95cUxPWE10bm1yOHNiVTNnTkZDWDUtalhIWFFPcEpuUXZXaVNUNkhPUElsbHFyMWVQdUdENkY1Z2wwc05EQ3cxbG9ETGdtemJ4Z2FocWsyTEZDR3hPWmFMU2tMQWdQc0YyQmVraTZJMl81WnZBcW1xMDd3aHo1bmF6WHBKSzdySk1GdGI0NnU5Q19fUjM2cFlsRjlILWJjakpxSzRKeDRBbEhBUnZTdEZpaFNkT2dIQU8zQ3dqd0xNeWZTQjd2Z2wtWEtqMVpnT01iMWtQUHpkS1FzZU15bU52UUxfZE10bzdSY18yVlpacU9jSQ?oc=5"
+  "https://news.google.com/rss/articles/CBMi7wFBVV95cUxPWE10bm1yOHNiVTNnTkZDWDUtalhIWFFPcEpuUXZXaVNUNkhPUElsbHFyMWVQdUdENkY1Z2wwc05EQ3cxbG9ETGdtemJ4Z2FocWsyTEZDR3hPWmFMU2tMQWdQc0YyQmVraTZJMl81WnZBcW1xMDd3aHo1bmF6WHBKSzdySk1GdGI0NnU5Q19fUjM2cFlsRjlILWJjakpxSzRKeDRBbEhBUnZTdEZpaFNkT2dIQU8zQ3dqd0xNeWZTQjd2Z2wtWEtqMVpnT01iMWtQUHpkS1FzZU15bU52UUxfZE10bzdSY18yVlpacU9jSQ?oc=5",
+  "https://news.google.com/rss/articles/CBMipgFBVV95cUxPLTdmNFJYNmtCdDhRSkx0dGFJckJIRDNFSG0xVDlYV0NjQTRzbXdLcGpYWEQtQ1BLZFFoZkRCRXA3eDF1LXdvQVlicHNEVE9KSmY1MUZVeVpZOXAteGRwTFk0TS1Dcm1vSUY5ME1GZGNIaU5KZ2JOVVpHVDdZRkVuWTI1dXkzb2w3TFhDQVdBMncxX0dCdWd0VUdsVEhKTGpfeW5Hekp3?oc=5"
  ]
 }

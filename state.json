@@ -1,11 +1,12 @@
 {
  "failures": {
-  "Conmebol – página de ingressos": 0,
+  "Conmebol – página de ingressos": 1,
   "ElevenTickets – página inicial": 102,
   "Google News": 0
  },
  "initialized": true,
  "last_error": {
+  "Conmebol – página de ingressos": "RuntimeError('resposta vazia (0 bytes)')",
   "ElevenTickets – página inicial": "<HTTPError 403: 'Forbidden'>"
  },
  "last_heartbeat": "2026-11-27",
@@ -405,6 +406,7 @@
   "https://news.google.com/rss/articles/CBMinAFBVV95cUxNOVU2OFpiRmlZRkgtU0dDMERvelhTODZWZXdHZUJZX19FamJnaFdhRzFuclhaS0ZKMnhPWDk2T19qeFB4cnBGeFhBQUNjMVBzUUNKN1hRbHNHVU9QU1U1YTlzRUZvdDR4b0hyeFc2MWxON24zOW9BRmw4bE8zemRuaDNrMXBhVlBIMEJjV2U0Y3VBcHBQZ3JnVmNfVFg?oc=5",
   "https://news.google.com/rss/articles/CBMiwwFBVV95cUxQTHRQdEtKVEJ2cm1PeERnTXNrazdUN1pOVUliWUxnQnVvU0ZRY2ZLQm9qZFFPSnd0NDRaazFEVGtaOWFxQXRmMzRTQzc3UjVTR0UyeDVqYjFsZkpzc3dTT1puU1VMcUZiQk9ZaG9sV0dwRUVvV0toZDdRSVV2NXJSR2dCZ2laalBlbTZxa0hKTVhHaWRfTnA2UmgzbUIzWmJpN2hhSkYtME03MGpZVGY0UjU2RFVkaWNySTdVWVNjLXFCSjQ?oc=5",
   "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQYTVscV8tVU55bkxXRVZOX1d2TW1PUEYzRVlUdXJBQUh5RDZ5ampZdkpYMzNhWC13ZEdfdFNsZjhfRHlDbm5qV2lZMkEzSlBsNHVzdVFTRVRkRXRlb0hWZnZIWmkxRm5qbkdtWm1TRjBUdXRPV3NsUnMzT2tUczFEMWpxbGl1UVZjZ1o2VndKV1BKbFJmZmI4SzZZeFFPVkFnU0JFWHNxems?oc=5",
-  "https://news.google.com/rss/articles/CBMiqgFBVV95cUxQRDlGT2h5b0pEUllUUUNEMDVnTTJ1SFNpTDhQLUNvaEhURV91c3dGbG9IVDJDV1MzcFNsWG9TaG9nV0M5NUJYQ0hUVWFhSU1zY1B6aUpNYkN2dUN5X1VHam01VkhWbW8xbFJjOUNNQmdZaUxTYzVZaUtsSlMzV3VndkI2dWZveFV6MEg5SmlQaG5fLWNpcjNmQmxiNWpBYjgyeFdKblpVX0daUQ?oc=5"
+  "https://news.google.com/rss/articles/CBMiqgFBVV95cUxQRDlGT2h5b0pEUllUUUNEMDVnTTJ1SFNpTDhQLUNvaEhURV91c3dGbG9IVDJDV1MzcFNsWG9TaG9nV0M5NUJYQ0hUVWFhSU1zY1B6aUpNYkN2dUN5X1VHam01VkhWbW8xbFJjOUNNQmdZaUxTYzVZaUtsSlMzV3VndkI2dWZveFV6MEg5SmlQaG5fLWNpcjNmQmxiNWpBYjgyeFdKblpVX0daUQ?oc=5",
+  "https://news.google.com/rss/articles/CBMibkFVX3lxTE1MRGVhaUxvNUNWOWltUm5xeXVrQzQxeVcydk1nME5xU1JOTFhTQ2N0MmhadkpDRXJENkdoaEZ0YUhleGlDR0hPd0JqaDRiQmZkMUNLaFlfU3dIMlpzS09RQW05czctVmRZMk1rZmtR?oc=5"
  ]
 }
